@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Modelo {
+    
     // Array de los dulces
     private ArrayList<Dulce> dulces = new ArrayList<Dulce>();
+    String nombreDulce, Categoria; 
     
     // Constructor de dulces por defecto
     public Modelo(){
+        
         Dulce dulce1 = new Dulce("Chocobreak", CategoriaDulce.DULCE);
         dulces.add(dulce1);
 
@@ -116,5 +119,19 @@ public class Modelo {
             strArray[i] = dulces.get(i).getNombreDulce();
         }
         return strArray;
+    }
+    public void setNombreDulce(String nombreDulce) {
+        this.nombreDulce = nombreDulce;
+    }
+    public void setCategoria(String Categoria) {
+        this.Categoria = Categoria;
+    }
+    public String getCategoria(){
+        return Categoria;
+
+    }
+
+    public String getNombreDulce() {
+        return nombreDulce;
     }
 }

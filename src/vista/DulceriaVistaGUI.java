@@ -2,6 +2,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import controlador.ControladorDulceria;
 import vista.componentesGUI.*;
 
 
@@ -500,11 +501,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     // End of variables declaration//GEN-END:variables
 
     // Metodos a implementar
-    @Override
-    public void iniciar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iniciar'");
-    }
+   
 
     @Override
     public void insertarDulce() {
@@ -534,5 +531,22 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     public void listarDulce() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listarDulce'");
+    }
+
+    @Override
+    public void iniciar(ControladorDulceria controlador) {
+        setVisible(true);
+    }
+
+    @Override
+    public String getNombresDulces() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombresDulces'");
+    }
+
+    @Override
+    public String getCategoria() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCategoria'");
     }
 }
