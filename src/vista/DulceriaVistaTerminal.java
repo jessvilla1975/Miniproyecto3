@@ -22,7 +22,7 @@ public class DulceriaVistaTerminal implements Vista{
             String opcion = scanner.nextLine();
             switch(opcion){
                 case "1":
-                    insertarDulce();
+                    // insertarDulce();
                     controlador.setOperacion(Operaciones.INSERTAR);
                     break;
                 case "2":

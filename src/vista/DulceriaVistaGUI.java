@@ -3,11 +3,26 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import controlador.ControladorDulceria;
-import vista.componentesGUI.*;
+import controlador.Operaciones;
+import vista.componentesGUI.ActualizarVista;
+import vista.componentesGUI.BuscarVista;
+import vista.componentesGUI.EliminarVista;
+import vista.componentesGUI.InsertarVista;
+import vista.componentesGUI.ListaVista;
+
 
 
 public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
+    //Agrego controlador
+    ControladorDulceria controlador;
+    //Datos que se usaran en el controlador
+    String nombreDulce, categoria;
+    //Agrego los Jpanels de cada menu para ser usados en la vista principal
+    InsertarVista menuInsertar = new InsertarVista();
+    ActualizarVista menuActualizar = new ActualizarVista();
+    //TODO: Agregar las demas vistas componentes 
 
+    //------------------------------------------------
     public DulceriaVistaGUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -339,6 +354,8 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // ----------------------------------------------------------------
+    // EVENTOS PARA CAMBIAR EL COLOR DE LOS PANELES CUANDO EL MOUSE ESTA POR ENCIMA
     private void lbInsertarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbInsertarMouseEntered
         btnInsertar.setBackground(new Color(255,237,184));
     }//GEN-LAST:event_lbInsertarMouseEntered
@@ -379,8 +396,22 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         btnLista.setBackground(new Color(255,255,203));
     }//GEN-LAST:event_lbListaMouseExited
 
+    
+    private void titleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseEntered
+        //btnLista.setBackground(new Color(255,237,184));
+    }//GEN-LAST:event_titleMouseEntered
+
+    private void titleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseExited
+        //btnLista.setBackground(new Color(255,255,203));
+    }//GEN-LAST:event_titleMouseExited
+
+    //----------------------------------------------------------------
+    //TODO: Modificar los demás eventos de acceso a las vistas componentes
+    // EVENTOS PARA CAMBIAR DE JPANEL/MENU DENTRO DE LA VISTA PRINCIPAL
     private void lbInsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbInsertarMouseClicked
-        InsertarVista menuInsertar = new InsertarVista();
+        // Seteo la operacion del controlador al entrar en su menu
+        controlador.setOperacion(Operaciones.INSERTAR);
+        // Reemplazo el panel contenedor por el panel del menu
         menuInsertar.setSize(600,480);
         menuInsertar.setLocation(0,0);
         
@@ -389,14 +420,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         contenidoPrincipal.revalidate();
         contenidoPrincipal.repaint();
     }//GEN-LAST:event_lbInsertarMouseClicked
-
-    private void titleMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseEntered
-        //btnLista.setBackground(new Color(255,237,184));
-    }//GEN-LAST:event_titleMouseEntered
-
-    private void titleMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseExited
-        //btnLista.setBackground(new Color(255,255,203));
-    }//GEN-LAST:event_titleMouseExited
 
     private void lbActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbActualizarMouseClicked
         ActualizarVista menuActualizar = new ActualizarVista();
@@ -500,13 +523,33 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 
+
+
+
     // Metodos a implementar
-   
+
+    @Override
+    public void iniciar(ControladorDulceria controlador) {
+        this.controlador = controlador;
+        // Agrego listener a los componentes de cada menu
+        menuInsertar.btnAgregarDulce.addActionListener(controlador);
+        //TODO:agregar listeners a los demas componentes
+        setVisible(true);
+    }
+
 
     @Override
     public void insertarDulce() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insertarDulce'");
+        // extraigo el nombre del dulce del campo de texto nombre perteneciente al menu insertar
+        nombreDulce = menuInsertar.txtNombre.getText();
+        //verfico que opcion de los radio buttons esta seleccionada y la agrego a el dato categoria
+        if(menuInsertar.rbAcido.isSelected()){
+            categoria = "Acido";
+        }else if(menuInsertar.rbDulce.isSelected()){
+            categoria = "Dulce";
+        }else if (menuInsertar.rbSinAzucar.isSelected()){
+            categoria = "SinAzucar";
+        }
     }
 
     @Override
@@ -533,20 +576,15 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         throw new UnsupportedOperationException("Unimplemented method 'listarDulce'");
     }
 
-    @Override
-    public void iniciar(ControladorDulceria controlador) {
-        setVisible(true);
-    }
 
+    //Getters de datos pertenecientes a las vistas
     @Override
     public String getNombresDulces() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNombresDulces'");
+        return nombreDulce;
     }
 
     @Override
     public String getCategoria() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCategoria'");
+        return categoria;
     }
 }

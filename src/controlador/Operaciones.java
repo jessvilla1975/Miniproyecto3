@@ -3,5 +3,7 @@ package controlador;
 public enum Operaciones {
     INSERTAR,
     ACTUALIZAR,
-    BUSCAR
+    BUSCAR,
+    ELIMINAR,
+    LISTAR
 }

@@ -2,7 +2,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javafx.print.PrintColor;
 import modelo.Modelo;
 import vista.Vista;
 import modelo.CategoriaDulce;
@@ -31,6 +30,7 @@ public class ControladorDulceria implements ActionListener {
         
         switch(operacion){
             case INSERTAR:
+                vista.insertarDulce();
                 String nuevoDulce = vista.getNombresDulces();
                 String categoria = vista.getCategoria();
                 
@@ -42,6 +42,8 @@ public class ControladorDulceria implements ActionListener {
                         categoriadulce = CategoriaDulce.SINAZUCAR; 
                     }
                 modelo.insertarDulces(nuevoDulce, categoriadulce);
+                
+                // Listar dulces como metodo de comprobacion
                 modelo.listarDulces();
                 break;
             case ACTUALIZAR:
