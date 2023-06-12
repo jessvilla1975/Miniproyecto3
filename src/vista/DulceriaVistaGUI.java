@@ -587,4 +587,10 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     public String getCategoria() {
         return categoria;
     }
+
+    @Override
+    public String getNombreDulceAmodificar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombreDulceAmodificar'");
+    }
 }

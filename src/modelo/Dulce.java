@@ -35,7 +35,6 @@ public class Dulce {
     public void mostrarInformacion(){
         System.out.printf("----------\n" +
                             "Nombre del dulce: %s\n" +
-                            "Categoria del dulce: %s\n" ,nombreDulce, categoria);
+                            "Categoria del dulce: %s\n" ,nombreDulce, categoria.getElementoFormateado());
     }
-
 }
