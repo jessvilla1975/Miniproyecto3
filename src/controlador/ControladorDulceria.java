@@ -5,12 +5,15 @@ import java.awt.event.ActionListener;
 import modelo.Modelo;
 import vista.Vista;
 import modelo.CategoriaDulce;
+import modelo.Dulce;
 
 public class ControladorDulceria implements ActionListener {
     Modelo modelo;
     Vista vista;
     Operaciones operacion;
     CategoriaDulce categoriadulce;
+
+
     public Operaciones getOperacion() {
         return operacion;
     }
@@ -38,20 +41,38 @@ public class ControladorDulceria implements ActionListener {
                     categoriadulce = CategoriaDulce.DULCE;
                 }else if(categoria.toUpperCase().equals(CategoriaDulce.ACIDO.toString().toUpperCase())){
                     categoriadulce = CategoriaDulce.ACIDO;
-                    }else{
-                        categoriadulce = CategoriaDulce.SINAZUCAR; 
-                    }
+                }else{
+                    categoriadulce = CategoriaDulce.SINAZUCAR; 
+                }
                 modelo.insertarDulces(nuevoDulce, categoriadulce);
                 
                 // Listar dulces como metodo de comprobacion
                 modelo.listarDulces();
                 break;
             case ACTUALIZAR:
-            
-            break;
+                //Ejecuto el metodo de la vista y extraigo sus datos
+                vista.actualizarDulce();
+                String dulceAmodificar = vista.getNombreDulceAmodificar().toUpperCase(); // en mayusculas para que no exista error al digitar
+                String nombreDulceNuevo = vista.getNombresDulces();
+                String categoriaNueva = vista.getCategoria();
 
-            default: break;
-    
+                // Asigno la categoria correspondiente
+                if(categoriaNueva.toUpperCase().equals(CategoriaDulce.DULCE.toString().toUpperCase())){
+                    categoriadulce = CategoriaDulce.DULCE;
+                }else if(categoriaNueva.toUpperCase().equals(CategoriaDulce.ACIDO.toString().toUpperCase())){
+                    categoriadulce = CategoriaDulce.ACIDO;
+                }else{
+                    categoriadulce = CategoriaDulce.SINAZUCAR; 
+                }
+
+                //Ejecuto el metodo para modificar el dulce con la informacion extraida de la vista
+                modelo.actualizarDulces(dulceAmodificar, nombreDulceNuevo, categoriadulce);
+                // Listar dulces como metodo de comprobacion
+                modelo.listarDulces();
+                break;
+
+            default: 
+                break;
         }
         
     }

@@ -12,5 +12,6 @@ public interface Vista {
     //Getters de datos pertenecientes a las vistas
     public String getNombresDulces();
     public String getCategoria();
+    public String getNombreDulceAmodificar();
     
 }
