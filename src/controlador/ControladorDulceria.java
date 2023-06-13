@@ -34,7 +34,6 @@ public class ControladorDulceria implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        
         switch(operacion){
             case INSERTAR:
                 vista.insertarDulce();

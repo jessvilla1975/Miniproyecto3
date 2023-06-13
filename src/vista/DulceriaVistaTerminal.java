@@ -20,7 +20,6 @@ public class DulceriaVistaTerminal implements Vista{
 
     DulceriaVistaGUI vista2 = new DulceriaVistaGUI();
     Modelo modelo  = new Modelo();
-    String nombreDulceAmodificar, nombreDulce, categoria = "Dulce";
 
     Scanner scanner = new Scanner(System.in);
 
@@ -238,11 +237,4 @@ public class DulceriaVistaTerminal implements Vista{
     public String getNombreDulceAeliminar() {
        return nombreDulceAeliminar;
     }
-
-
-    
- 
-
-    
-    
 }
