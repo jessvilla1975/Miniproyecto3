@@ -1,14 +1,27 @@
 package vista;
 import controlador.Operaciones;
+
 import modelo.Dulce;
+
+import modelo.Modelo;
+
 import controlador.ControladorDulceria;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import vista.DulceriaVistaGUI;
+import javax.swing.JOptionPane;
+import controlador.ControladorDulceria;
 
 public class DulceriaVistaTerminal implements Vista{
     ControladorDulceria controlador;
+
     String nombreDulceAmodificar, nombreDulceAeliminar, nombreDulce, categoria = "Dulce";
+
+    DulceriaVistaGUI vista2 = new DulceriaVistaGUI();
+    Modelo modelo  = new Modelo();
+    String nombreDulceAmodificar, nombreDulce, categoria = "Dulce";
+
     Scanner scanner = new Scanner(System.in);
 
      // -----------Metodos para la consola------------------------------------------------
@@ -30,6 +43,36 @@ public class DulceriaVistaTerminal implements Vista{
         categoria = "Dulce";
     }
 
+
+    public void panelOpciones() {
+    int opcion = JOptionPane.showOptionDialog(
+            null,
+            "Panel de opciones",
+            "Opciones",
+            JOptionPane.YES_NO_CANCEL_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,
+            new Object[]{"Continuar", "Salir", "Vista GUI"},
+            "Continuar");
+
+    if (opcion == JOptionPane.YES_OPTION) {
+        // Continuar con la aplicación
+        System.out.println("Continuando con la aplicación...");
+        iniciar(controlador);
+    } else if (opcion == JOptionPane.NO_OPTION) {
+        // Salir del programa
+        System.out.println("Saliendo del programa...");
+        System.exit(0);
+    } else if (opcion == JOptionPane.CANCEL_OPTION) {
+        // Mostrar vista GUI
+        System.out.println("Mostrando vista GUI...");
+        ControladorDulceria controlador = new ControladorDulceria(modelo, vista2);
+        controlador.inicializacion();
+        
+    }
+}
+
+
     public void iniciar(ControladorDulceria controlador) {
         boolean continuar = true;
         this.controlador = controlador;
@@ -44,8 +87,9 @@ public class DulceriaVistaTerminal implements Vista{
             System.out.println("4.Buscar Dulce");
             System.out.println("5.Listar Dulces");
             System.out.println("6.Salir");
-            System.out.print("Ingrese una opcion: ");
+            System.out.println("Ingrese una opcion: ");
             Byte opcion = scanner.nextByte();
+            scanner.nextLine(); //Se // Agrega esta línea para consumir el carácter de nueva línea
             switch(opcion){
                 case 1:
                     controlador.setOperacion(Operaciones.INSERTAR);
@@ -61,9 +105,9 @@ public class DulceriaVistaTerminal implements Vista{
                     break;
                 case 6:
                     // limpiarConsola();
-                    System.out.println("Gracias por usar la aplicacion");
+                    //System.out.println("Gracias por usar la aplicacion");
                     continuar = false;
-                    scanner.nextLine();
+                    panelOpciones();
                     // esperarEnter();
                     break;
             }
@@ -72,6 +116,7 @@ public class DulceriaVistaTerminal implements Vista{
                 controlador.actionPerformed(null);         
             }
         }
+    
     }
 
     @Override

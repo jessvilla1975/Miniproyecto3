@@ -71,6 +71,9 @@ public class ControladorDulceria implements ActionListener {
 
                 //Ejecuto el metodo para modificar el dulce con la informacion extraida de la vista
                 modelo.actualizarDulces(dulceAmodificar, nombreDulceNuevo, categoriadulce);
+
+                getNombresDulcesControlador();
+
                 // Listar dulces como metodo de comprobacion
                 modelo.listarDulces();
                 break;
