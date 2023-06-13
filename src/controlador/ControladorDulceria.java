@@ -77,7 +77,16 @@ public class ControladorDulceria implements ActionListener {
                 // Listar dulces como metodo de comprobacion
                 modelo.listarDulces();
                 break;
-
+            case ELIMINAR:
+                vista.eliminarDulce();
+                String dulceAeliminar = vista.getNombreDulceAeliminar().toUpperCase();
+                modelo.eliminarDulces(dulceAeliminar);
+                // Listar dulces como metodo de comprobacion
+                modelo.listarDulces();
+                break;
+            case LISTAR:
+                vista.listarDulce(modelo.getDulces());
+                break;
             default: 
                 break;
         }
