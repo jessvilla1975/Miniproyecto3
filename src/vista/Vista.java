@@ -11,6 +11,7 @@ public interface Vista {
     public void eliminarDulce();
     public void buscarDulce();
     public void listarDulce(ArrayList<Dulce> dulces);
+    public void actualizarNombresListComboboxes();
 
     //Getters de datos pertenecientes a las vistas
     public String getNombresDulces();

@@ -141,17 +141,14 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         lbActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                actualizarDulcesComboBoxesList();
                 lbActualizarMouseClicked(evt);
                 
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                actualizarDulcesComboBoxesList();
                 lbActualizarMouseEntered(evt);
                 
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                actualizarDulcesComboBoxesList();
                 lbActualizarMouseExited(evt);
                 
             }
@@ -293,7 +290,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         lbLista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbListaMouseClicked(evt);
-                actualizarDulcesComboBoxesList();
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lbListaMouseEntered(evt);
@@ -407,13 +403,10 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     private void lbActualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbActualizarMouseEntered
         btnActualizar.setBackground(new Color(255,237,184));
-        actualizarDulcesComboBoxesList();
     }//GEN-LAST:event_lbActualizarMouseEntered
 
     private void lbActualizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbActualizarMouseExited
-       btnActualizar.setBackground(new Color(255,255,203));
-       actualizarDulcesComboBoxesList();
-       
+       btnActualizar.setBackground(new Color(255,255,203));   
     }//GEN-LAST:event_lbActualizarMouseExited
 
     private void lbEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbEliminarMouseEntered
@@ -457,7 +450,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     }//GEN-LAST:event_lbInsertarMouseClicked
 
     private void lbActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbActualizarMouseClicked
-        actualizarDulcesComboBoxesList();
         cambiarPanelMenu(menuActualizar, Operaciones.ACTUALIZAR);
     }//GEN-LAST:event_lbActualizarMouseClicked
 
@@ -522,10 +514,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
                 new DulceriaVistaGUI().setVisible(true);
             }
         });
-
-        
-
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -583,38 +571,36 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         }
         
         JOptionPane.showMessageDialog(null, "¡Se ha agregado dulce con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
+        // Devuelvo los campos a sus valores por defecto 
         menuInsertar.btnGroupCategorias.clearSelection();
         menuInsertar.txtNombre.setText("Nombre del dulce");
     }
 
     @Override
     public void actualizarDulce() {
-    // Obtener el nombre del dulce seleccionado en un ComboBox
-    nombreDulceAmodificar = menuActualizar.cbListaDulces.getSelectedItem().toString();
-    
-    // Obtener el nuevo nombre del dulce ingresado en un campo de texto
-    nombreDulce = menuActualizar.txtNombre.getText();
-    
-    // Determinar la categoría seleccionada por medio de botones de opción
-    if(menuActualizar.rbAcido.isSelected()){
-        categoria = "Acido";
-    } else if(menuActualizar.rbDulce.isSelected()){
-        categoria = "Dulce";
-    } else if (menuActualizar.rbSinAzucar.isSelected()){
-        categoria = "SinAzucar";
-    }
-    
+        // Obtener el nombre del dulce seleccionado en un ComboBox
+        nombreDulceAmodificar = menuActualizar.cbListaDulces.getSelectedItem().toString();
+        
+        // Obtener el nuevo nombre del dulce ingresado en un campo de texto
+        nombreDulce = menuActualizar.txtNombre.getText();
+        
+        // Determinar la categoría seleccionada por medio de botones de opción
+        if(menuActualizar.rbAcido.isSelected()){
+            categoria = "Acido";
+        } else if(menuActualizar.rbDulce.isSelected()){
+            categoria = "Dulce";
+        } else if (menuActualizar.rbSinAzucar.isSelected()){
+            categoria = "SinAzucar";
+        }
+        
+    // Limpiar la selección de los botones de opción
+    menuActualizar.btnGroupCategoria.clearSelection();
+
+    // Restablecer el texto del campo de nombre del dulce
+    menuActualizar.txtNombre.setText("Nombre del dulce");
     // Mostrar un mensaje de éxito utilizando JOptionPane
     JOptionPane.showMessageDialog(null, "¡Se ha modificado dulce con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
     
-    // Limpiar la selección de los botones de opción
-    menuActualizar.btnGroupCategoria.clearSelection();
-    
-    // Restablecer el texto del campo de nombre del dulce
-    menuActualizar.txtNombre.setText("Nombre del dulce");
-    
-    // Actualizar los ComboBoxes con la lista de dulces
-    actualizarDulcesComboBoxesList();  
 }
 
 
@@ -634,6 +620,12 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     public void listarDulce(ArrayList<Dulce> dulces) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listarDulce'");
+    }
+
+    @Override
+    public void actualizarNombresListComboboxes() {
+        // Actualiza los comboboxes y las list cuando se activa un evento en el controlador
+        actualizarDulcesComboBoxesList(); 
     }
 
 
