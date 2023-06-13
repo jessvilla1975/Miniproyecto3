@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import modelo.Modelo;
 import vista.Vista;
 import modelo.CategoriaDulce;
-import modelo.Dulce;
 
 public class ControladorDulceria implements ActionListener {
     Modelo modelo;
@@ -23,6 +22,11 @@ public class ControladorDulceria implements ActionListener {
     public ControladorDulceria(Modelo modelo, Vista vista) {
         this.modelo = modelo;
         this.vista = vista;
+    }
+
+    // Metodo intermediario que usa un metodo del modelo para enviar un array de nombres a la vista GUI
+    public String[] getNombresDulcesControlador(){
+        return modelo.getNombresDulces();
     }
 
     public void inicializacion(){

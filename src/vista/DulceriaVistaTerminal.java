@@ -3,7 +3,6 @@ import controlador.Operaciones;
 import controlador.ControladorDulceria;
 import java.util.Scanner;
 
-import javax.swing.plaf.basic.BasicScrollPaneUI.ViewportChangeHandler;
 public class DulceriaVistaTerminal implements Vista{
     ControladorDulceria controlador;
     String nombreDulceAmodificar, nombreDulce, categoria = "Dulce";
@@ -43,7 +42,6 @@ public class DulceriaVistaTerminal implements Vista{
             System.out.println("5.Listar Dulces");
             System.out.println("6.Salir");
             System.out.print("Ingrese una opcion: ");
-            Scanner scanner = new Scanner(System.in);
             Byte opcion = scanner.nextByte();
             switch(opcion){
                 case 1:
