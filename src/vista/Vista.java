@@ -8,7 +8,10 @@ public interface Vista {
     public void eliminarDulce();
     public void buscarDulce();
     public void listarDulce();
+
+    //Getters de datos pertenecientes a las vistas
     public String getNombresDulces();
     public String getCategoria();
+    public String getNombreDulceAmodificar();
     
 }

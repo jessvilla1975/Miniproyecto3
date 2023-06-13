@@ -42,10 +42,13 @@ public class Modelo {
     }
 
     // Metodo que permite actualizar dulces
-    public void actualizarDulces(int indice, String nombreDulce, CategoriaDulce categoria){
-        Dulce dulce = dulces.get(indice);
-        dulce.setNombreDulce(nombreDulce);
-        dulce.setCategoriaDulce(categoria);   
+    public void actualizarDulces(String nombreDulce, String nombreNuevoDulce, CategoriaDulce categoria){
+        for (Dulce dulce : dulces) {
+            if (dulce.getNombreDulce().toUpperCase().equals(nombreDulce)){
+                dulce.setNombreDulce(nombreNuevoDulce);
+                dulce.setCategoriaDulce(categoria);
+            }
+        }  
     }
 
     //Metodo que permite eliminar dulces
