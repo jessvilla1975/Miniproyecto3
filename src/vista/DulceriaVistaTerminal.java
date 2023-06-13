@@ -9,9 +9,7 @@ import controlador.ControladorDulceria;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import vista.DulceriaVistaGUI;
 import javax.swing.JOptionPane;
-import controlador.ControladorDulceria;
 
 public class DulceriaVistaTerminal implements Vista{
     ControladorDulceria controlador;
@@ -41,7 +39,6 @@ public class DulceriaVistaTerminal implements Vista{
         nombreDulce = nombreDulceAmodificar = "";
         categoria = "Dulce";
     }
-
 
     public void panelOpciones() {
     int opcion = JOptionPane.showOptionDialog(
@@ -78,7 +75,7 @@ public class DulceriaVistaTerminal implements Vista{
         limpiarConsola();
         while(continuar){
             limpiarDatos();
-            // limpiarConsola();
+            limpiarConsola();
             System.out.println("--------Menu Dulceria--------");
             System.out.println("1.Insertar Dulce");
             System.out.println("2.Actualizar Dulce");
@@ -86,9 +83,9 @@ public class DulceriaVistaTerminal implements Vista{
             System.out.println("4.Buscar Dulce");
             System.out.println("5.Listar Dulces");
             System.out.println("6.Salir");
-            System.out.println("Ingrese una opcion: ");
+            System.out.print("Ingrese una opcion: ");
             Byte opcion = scanner.nextByte();
-            scanner.nextLine(); //Se // Agrega esta línea para consumir el carácter de nueva línea
+            scanner.nextLine(); //Se agrega esta línea para consumir el carácter de nueva línea
             switch(opcion){
                 case 1:
                     controlador.setOperacion(Operaciones.INSERTAR);
@@ -125,7 +122,7 @@ public class DulceriaVistaTerminal implements Vista{
         System.out.println("---- Menu Insertar Dulce ----");
         System.out.print("Ingrese el nombre del dulce: ");
         nombreDulce = scanner.nextLine();
-        System.out.println("--Ingrese categoria del dulce--");
+        System.out.println("\n--Ingrese categoria del dulce--");
         for (int i = 0; i < opciones.length; i++) {
             System.out.println((i + 1) + ". " + opciones[i]);
         }
@@ -152,18 +149,19 @@ public class DulceriaVistaTerminal implements Vista{
 
     @Override
     public void actualizarDulce() {
+        limpiarConsola();
         String[] opciones = {"Dulce", "Acido", "Sin azucar"};
         System.out.println("---- Menu Actualizar Dulce -----");
         System.out.print("Ingrese el nombre del dulce que Desea modificar: ");
         nombreDulceAmodificar = scanner.nextLine();
         System.out.print("Ingrese el nuevo nombre del dulce: ");
         nombreDulce = scanner.nextLine();
-        System.out.println("--Ingrese la nueva categoria del dulce--");
+        System.out.println("\n--Ingrese la nueva categoria del dulce--");
         for (int i = 0; i < opciones.length; i++) {
             System.out.println((i + 1) + ". " + opciones[i]);
         }
         System.out.print("Seleccione una opcion de categoria: ");
-        categoria= scanner.nextLine();
+        categoria = scanner.nextLine();
         switch (categoria) {
             case "1":
                 categoria = opciones[0];
@@ -189,13 +187,11 @@ public class DulceriaVistaTerminal implements Vista{
         limpiarConsola();
         System.out.println("---- Menu Eliminar Dulce -----");
         System.out.print("Nombre del dulce a eliminar: ");
-        scanner.nextLine(); // Agrega esta línea adicional para consumir el carácter de nueva línea pendiente
         nombreDulceAeliminar = scanner.nextLine();
 
         limpiarConsola();
         System.out.println("Dulce eliminado con éxito!");
         esperarEnter();
-
     }
 
     @Override
@@ -205,6 +201,7 @@ public class DulceriaVistaTerminal implements Vista{
 
     @Override
     public void listarDulce(ArrayList<Dulce> dulces) {
+        limpiarConsola();
         System.out.println("-------Lista de dulces-------");
         for (Dulce dulce : dulces){
             dulce.mostrarInformacion();

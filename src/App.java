@@ -1,8 +1,6 @@
 import modelo.Modelo;
 import vista.DulceriaVistaTerminal;
 import vista.DulceriaVistaGUI;
-import vista.componentesGUI.*;
-import vista.Vista;
 
 import javax.swing.JOptionPane;
 
