@@ -2,6 +2,8 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.JPanel;
+
 import controlador.ControladorDulceria;
 import controlador.Operaciones;
 import vista.componentesGUI.ActualizarVista;
@@ -11,16 +13,28 @@ import vista.componentesGUI.InsertarVista;
 import vista.componentesGUI.ListaVista;
 
 
-
 public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     //Agrego controlador
     ControladorDulceria controlador;
     //Datos que se usaran en el controlador
     String nombreDulce, categoria;
+    //Lista para guardar los nombres de los dulces y enviarlos a los comboboxes y Jlist para mostrar la informacion
+    String[] nombreDulces;
+
     //Agrego los Jpanels de cada menu para ser usados en la vista principal
     InsertarVista menuInsertar = new InsertarVista();
     ActualizarVista menuActualizar = new ActualizarVista();
-    //TODO: Agregar las demas vistas componentes 
+    BuscarVista menuBuscar = new BuscarVista();
+    EliminarVista menuEliminar = new EliminarVista();
+    ListaVista menuLista = new ListaVista();
+
+    // Metodo para actualizar las list y comboboxes con los nombres de los dulces
+    private void actualizarDulcesComboBoxesList(){
+        nombreDulces = controlador.getNombresDulcesControlador();
+        menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
+        menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
+        menuLista.lsLista.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
+    }
 
     //------------------------------------------------
     public DulceriaVistaGUI() {
@@ -409,62 +423,41 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     //TODO: Modificar los demás eventos de acceso a las vistas componentes
     // EVENTOS PARA CAMBIAR DE JPANEL/MENU DENTRO DE LA VISTA PRINCIPAL
     private void lbInsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbInsertarMouseClicked
-        // Seteo la operacion del controlador al entrar en su menu
-        controlador.setOperacion(Operaciones.INSERTAR);
-        // Reemplazo el panel contenedor por el panel del menu
-        menuInsertar.setSize(600,480);
-        menuInsertar.setLocation(0,0);
-        
-        contenidoPrincipal.removeAll();
-        contenidoPrincipal.add(menuInsertar, BorderLayout.CENTER);
-        contenidoPrincipal.revalidate();
-        contenidoPrincipal.repaint();
+        cambiarPanelMenu(menuInsertar, Operaciones.INSERTAR);
     }//GEN-LAST:event_lbInsertarMouseClicked
 
     private void lbActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbActualizarMouseClicked
-        ActualizarVista menuActualizar = new ActualizarVista();
-        menuActualizar.setSize(600,480);
-        menuActualizar.setLocation(0,0);
-        
-        contenidoPrincipal.removeAll();
-        contenidoPrincipal.add(menuActualizar, BorderLayout.CENTER);
-        contenidoPrincipal.revalidate();
-        contenidoPrincipal.repaint();
+        cambiarPanelMenu(menuActualizar, Operaciones.ACTUALIZAR);
     }//GEN-LAST:event_lbActualizarMouseClicked
 
     private void lbEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbEliminarMouseClicked
-        EliminarVista menuEliminar = new EliminarVista();
-        menuEliminar.setSize(600,480);
-        menuEliminar.setLocation(0,0);
-        
-        contenidoPrincipal.removeAll();
-        contenidoPrincipal.add(menuEliminar, BorderLayout.CENTER);
-        contenidoPrincipal.revalidate();
-        contenidoPrincipal.repaint();
+        cambiarPanelMenu(menuEliminar, Operaciones.ELIMINAR);
     }//GEN-LAST:event_lbEliminarMouseClicked
 
     private void lbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbBuscarMouseClicked
-        BuscarVista menuBuscar = new BuscarVista();
-        menuBuscar.setSize(600,480);
-        menuBuscar.setLocation(0,0);
-        
-        contenidoPrincipal.removeAll();
-        contenidoPrincipal.add(menuBuscar, BorderLayout.CENTER);
-        contenidoPrincipal.revalidate();
-        contenidoPrincipal.repaint();
+        cambiarPanelMenu(menuBuscar, Operaciones.BUSCAR);
     }//GEN-LAST:event_lbBuscarMouseClicked
 
     private void lbListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbListaMouseClicked
-        ListaVista menuLista = new ListaVista();
-        menuLista.setSize(600,480);
-        menuLista.setLocation(0,0);
-        
-        contenidoPrincipal.removeAll();
-        contenidoPrincipal.add(menuLista, BorderLayout.CENTER);
-        contenidoPrincipal.revalidate();
-        contenidoPrincipal.repaint();
+        cambiarPanelMenu(menuLista, Operaciones.LISTAR);
     }//GEN-LAST:event_lbListaMouseClicked
 
+
+    // Metodo que permite cambiar de menus, recibiendo el panel correspondiente y la operacion del menu
+    private void cambiarPanelMenu(JPanel p, Operaciones operacion) {
+        // seteo la operacion en el controlador, correspondiente a cada funcionalidad de cada menu
+        controlador.setOperacion(operacion);
+        // Actualizo los comboboxes y list para tener los ultimos datos
+        actualizarDulcesComboBoxesList();
+        //Asigno un Jpanel referente al menu que se muestra en el contenido de la GUI principal
+        p.setSize(600,480);
+        p.setLocation(0,0);
+        contenidoPrincipal.removeAll();
+        contenidoPrincipal.add(p, BorderLayout.CENTER);
+        contenidoPrincipal.revalidate();
+        contenidoPrincipal.repaint();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -523,9 +516,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 
-
-
-
     // Metodos a implementar
 
     @Override
@@ -534,6 +524,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         // Agrego listener a los componentes de cada menu
         menuInsertar.btnAgregarDulce.addActionListener(controlador);
         //TODO:agregar listeners a los demas componentes
+        actualizarDulcesComboBoxesList();
         setVisible(true);
     }
 
