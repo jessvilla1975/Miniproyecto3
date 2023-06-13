@@ -184,6 +184,11 @@ public class DulceriaVistaTerminal implements Vista{
     }
 
     @Override
+    public void actualizarNombresListComboboxes() {
+       // Metodo solo necesario para la GUI
+    }
+
+    @Override
     public String getNombresDulces() {
         return nombreDulce;
     }

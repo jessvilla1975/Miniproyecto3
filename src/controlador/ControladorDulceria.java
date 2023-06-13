@@ -76,6 +76,9 @@ public class ControladorDulceria implements ActionListener {
 
                 // Listar dulces como metodo de comprobacion
                 modelo.listarDulces();
+                
+                // **Solo para GUI** Actualizo al tiempo los comboboxes y Jlist para que se vean los cambios en el mismo menu de la GUI
+                vista.actualizarNombresListComboboxes();
                 break;
 
             default: 
