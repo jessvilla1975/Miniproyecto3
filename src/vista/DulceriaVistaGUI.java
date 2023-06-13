@@ -1,11 +1,13 @@
 package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import controlador.ControladorDulceria;
 import controlador.Operaciones;
+import modelo.Dulce;
 import vista.componentesGUI.ActualizarVista;
 import vista.componentesGUI.BuscarVista;
 import vista.componentesGUI.EliminarVista;
@@ -562,7 +564,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     }
 
     @Override
-    public void listarDulce() {
+    public void listarDulce(ArrayList<Dulce> dulces) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'listarDulce'");
     }
@@ -583,5 +585,11 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     public String getNombreDulceAmodificar() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getNombreDulceAmodificar'");
+    }
+
+    @Override
+    public String getNombreDulceAeliminar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getNombreDulceAeliminar'");
     }
 }

@@ -1,11 +1,14 @@
 package vista;
 import controlador.Operaciones;
+import modelo.Dulce;
 import controlador.ControladorDulceria;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DulceriaVistaTerminal implements Vista{
     ControladorDulceria controlador;
-    String nombreDulceAmodificar, nombreDulce, categoria = "Dulce";
+    String nombreDulceAmodificar, nombreDulceAeliminar, nombreDulce, categoria = "Dulce";
     Scanner scanner = new Scanner(System.in);
 
      // -----------Metodos para la consola------------------------------------------------
@@ -49,6 +52,12 @@ public class DulceriaVistaTerminal implements Vista{
                     break;
                 case 2:
                     controlador.setOperacion(Operaciones.ACTUALIZAR);
+                    break;
+                case 3:
+                    controlador.setOperacion(Operaciones.ELIMINAR);
+                    break;
+                case 5:
+                    controlador.setOperacion(Operaciones.LISTAR);
                     break;
                 case 6:
                     // limpiarConsola();
@@ -130,8 +139,18 @@ public class DulceriaVistaTerminal implements Vista{
         esperarEnter();
     }
 
+    
     @Override
     public void eliminarDulce() {
+        limpiarConsola();
+        System.out.println("---- Menu Eliminar Dulce -----");
+        System.out.print("Nombre del dulce a eliminar: ");
+        scanner.nextLine(); // Agrega esta línea adicional para consumir el carácter de nueva línea pendiente
+        nombreDulceAeliminar = scanner.nextLine();
+
+        limpiarConsola();
+        System.out.println("Dulce eliminado con éxito!");
+        esperarEnter();
 
     }
 
@@ -141,8 +160,13 @@ public class DulceriaVistaTerminal implements Vista{
     }
 
     @Override
-    public void listarDulce() {
-        
+    public void listarDulce(ArrayList<Dulce> dulces) {
+        System.out.println("-------Lista de dulces-------");
+        for (Dulce dulce : dulces){
+            dulce.mostrarInformacion();
+        } 
+        esperarEnter();
+
     }
 
     @Override
@@ -159,6 +183,13 @@ public class DulceriaVistaTerminal implements Vista{
     public String getNombreDulceAmodificar() {
        return nombreDulceAmodificar;
     }
+
+    @Override
+    public String getNombreDulceAeliminar() {
+       return nombreDulceAeliminar;
+    }
+
+
     
  
 
