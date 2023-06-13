@@ -33,6 +33,7 @@ public class DulceriaVistaTerminal implements Vista{
         categoria = "Dulce";
     }
 
+
     public void panelOpciones() {
     int opcion = JOptionPane.showOptionDialog(
             null,
@@ -98,7 +99,6 @@ public class DulceriaVistaTerminal implements Vista{
             if (continuar) {
                 controlador.actionPerformed(null);         
             }
-
         }
     
     }
@@ -139,7 +139,7 @@ public class DulceriaVistaTerminal implements Vista{
     public void actualizarDulce() {
         String[] opciones = {"Dulce", "Acido", "Sin azucar"};
         System.out.println("---- Menu Actualizar Dulce -----");
-        System.out.println("Ingrese el nombre del dulce que Desea modificar: ");
+        System.out.print("Ingrese el nombre del dulce que Desea modificar: ");
         nombreDulceAmodificar = scanner.nextLine();
         System.out.print("Ingrese el nuevo nombre del dulce: ");
         nombreDulce = scanner.nextLine();

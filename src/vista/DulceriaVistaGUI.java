@@ -2,6 +2,7 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
@@ -11,18 +12,22 @@ import controlador.Operaciones;
 
 import modelo.CategoriaDulce;
 import modelo.Dulce;
+
 import vista.componentesGUI.ActualizarVista;
 import vista.componentesGUI.BuscarVista;
 import vista.componentesGUI.EliminarVista;
 import vista.componentesGUI.InsertarVista;
 import vista.componentesGUI.ListaVista;
+
 import modelo.Modelo;
+
 
 
 public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     //Agrego controlador
     ControladorDulceria controlador;
     //Datos que se usaran en el controlador
+
     String nombreDulce, categoria, nombreDulceAmodificar;
 
     //Lista para guardar los nombres de los dulces y enviarlos a los comboboxes y Jlist para mostrar la informacion
@@ -34,10 +39,10 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     BuscarVista menuBuscar = new BuscarVista();
     EliminarVista menuEliminar = new EliminarVista();
     ListaVista menuLista = new ListaVista();
-    Modelo model = new Modelo();
+
 
     // Metodo para actualizar las list y comboboxes con los nombres de los dulces
-    public void actualizarDulcesComboBoxesList(){
+    private void actualizarDulcesComboBoxesList(){
         nombreDulces = controlador.getNombresDulcesControlador();
         menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
         menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
@@ -450,7 +455,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     private void lbActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbActualizarMouseClicked
         actualizarDulcesComboBoxesList();
         cambiarPanelMenu(menuActualizar, Operaciones.ACTUALIZAR);
-        
     }//GEN-LAST:event_lbActualizarMouseClicked
 
     private void lbEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbEliminarMouseClicked
@@ -542,8 +546,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     private javax.swing.JPanel separador;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
-   
-    
+
     // Metodos a implementar
 
     @Override
@@ -561,6 +564,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     
 
 
+
     @Override
     public void insertarDulce() {
         // extraigo el nombre del dulce del campo de texto nombre perteneciente al menu insertar
@@ -573,6 +577,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         }else if (menuInsertar.rbSinAzucar.isSelected()){
             categoria = "SinAzucar";
         }
+        
         JOptionPane.showMessageDialog(null, "¡Se ha agregado dulce con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
         menuInsertar.btnGroupCategorias.clearSelection();
         menuInsertar.txtNombre.setText("Nombre del dulce");
@@ -641,7 +646,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     @Override
     public String getNombreDulceAmodificar() {
-        
         return nombreDulceAmodificar;
+
     }
 }
