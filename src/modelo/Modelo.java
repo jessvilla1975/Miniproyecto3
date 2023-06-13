@@ -55,7 +55,7 @@ public class Modelo {
     public Dulce eliminarDulces(String nombreDulce) {
         for (int i = 0; i < dulces.size(); i++) {
             Dulce dulce = dulces.get(i);
-            if (dulce.getNombreDulce().equals(nombreDulce)) {
+            if (dulce.getNombreDulce().toUpperCase().equals(nombreDulce)) {
                 dulces.remove(i);
                 return dulce; // Retorna el dulce eliminado si es necesario
             }

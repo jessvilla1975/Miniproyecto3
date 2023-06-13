@@ -80,7 +80,16 @@ public class ControladorDulceria implements ActionListener {
                 // **Solo para GUI** Actualizo al tiempo los comboboxes y Jlist para que se vean los cambios en el mismo menu de la GUI
                 vista.actualizarNombresListComboboxes();
                 break;
-
+            case ELIMINAR:
+                vista.eliminarDulce();
+                String dulceAeliminar = vista.getNombreDulceAeliminar().toUpperCase();
+                modelo.eliminarDulces(dulceAeliminar);
+                // Listar dulces como metodo de comprobacion
+                modelo.listarDulces();
+                break;
+            case LISTAR:
+                vista.listarDulce(modelo.getDulces());
+                break;
             default: 
                 break;
         }
