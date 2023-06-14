@@ -8,7 +8,7 @@ public class Modelo {
     
     // Array de los dulces
     private ArrayList<Dulce> dulces = new ArrayList<Dulce>();
-    String nombreDulce, Categoria; 
+    String nombreDulce, Categoria, datos ; 
     
     // Constructor de dulces por defecto
     public Modelo(){
@@ -80,11 +80,12 @@ public class Modelo {
 
     //Metodo que permite buscar dulces por nombre
     public String buscarDulcesPorNombre(String nombreDulce){
-        String datos = ""; // Variable para almacenar los datos del dulce encontrado
+        
         boolean existeDulce = false; // Variable para verificar si se encuentra el dulce
         for (Dulce dulce : dulces){ 
             // Se convierte el nombre del dulce en mayusculas y se verifica si es igual al nombre del dulce a buscar en el arraylist
             if(dulce.getNombreDulce().toUpperCase().equals(nombreDulce)){
+                JOptionPane.showMessageDialog(null, "El dulce " + nombreDulce + " existe", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 // Si se encuentra el dulce, se asignan los datos y se marca como encontrado
                 datos = "Nombre Dulce: " + dulce.getNombreDulce() + "\nCategoria: " + dulce.getCategoriaDulce().getElementoFormateado();
                 existeDulce = true;
@@ -96,7 +97,7 @@ public class Modelo {
             JOptionPane.showMessageDialog(null, "El dulce " + nombreDulce + " no existe", "Error", JOptionPane.ERROR_MESSAGE);
         }
     
-        return datos; // Devolver los datos del dulce encontrado
+        return  datos;// Devolver los datos del dulce encontrado
     }
     
 
@@ -137,4 +138,5 @@ public class Modelo {
     public String getNombreDulce() {
         return nombreDulce;
     }
+    
 }
