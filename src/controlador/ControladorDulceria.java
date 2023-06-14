@@ -2,6 +2,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import modelo.Modelo;
 import vista.Vista;
 import modelo.CategoriaDulce;
@@ -11,6 +13,7 @@ public class ControladorDulceria implements ActionListener {
     Vista vista;
     Operaciones operacion;
     CategoriaDulce categoriadulce;
+    String dulceEncontrado;
 
 
     public Operaciones getOperacion() {
@@ -93,12 +96,18 @@ public class ControladorDulceria implements ActionListener {
                     }  
                 vista.actualizarNombresListComboboxes();
                 break;
+            case BUSCAR:
+                vista.buscarDulce();
+                String buscar = vista.getNombresDulces().toUpperCase();
+                vista.setDatos(modelo.buscarDulcesPorNombre(buscar));
+                break;
             case LISTAR:
                 vista.listarDulce(modelo.getDulces());
                 break;
             default: 
                 break;
         }
+        
         
     }
     

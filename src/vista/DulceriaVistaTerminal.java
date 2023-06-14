@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class DulceriaVistaTerminal implements Vista{
     ControladorDulceria controlador;
 
-    String nombreDulceAmodificar, nombreDulceAeliminar, nombreDulce, categoria = "Dulce";
+    String nombreDulceAmodificar, nombreDulceAeliminar, nombreDulce,categoria = "Dulce";
 
     DulceriaVistaGUI vista2 = new DulceriaVistaGUI();
     Modelo modelo  = new Modelo();
@@ -72,10 +72,8 @@ public class DulceriaVistaTerminal implements Vista{
     public void iniciar(ControladorDulceria controlador) {
         boolean continuar = true;
         this.controlador = controlador;
-        limpiarConsola();
         while(continuar){
             limpiarDatos();
-            limpiarConsola();
             System.out.println("--------Menu Dulceria--------");
             System.out.println("1.Insertar Dulce");
             System.out.println("2.Actualizar Dulce");
@@ -95,6 +93,9 @@ public class DulceriaVistaTerminal implements Vista{
                     break;
                 case 3:
                     controlador.setOperacion(Operaciones.ELIMINAR);
+                    break;
+                case 4:
+                    controlador.setOperacion(Operaciones.BUSCAR);
                     break;
                 case 5:
                     controlador.setOperacion(Operaciones.LISTAR);
@@ -191,12 +192,18 @@ public class DulceriaVistaTerminal implements Vista{
 
         limpiarConsola();
         System.out.println("Dulce eliminado con éxito!");
-        esperarEnter();
+        
     }
 
     @Override
     public void buscarDulce() {
-        
+        limpiarConsola();
+        System.out.println("---- Menu Buscar Dulce -----");
+        System.out.print("Nombre del dulce a buscar: ");
+        nombreDulce = scanner.nextLine();
+        limpiarConsola();
+        esperarEnter();
+     
     }
 
     @Override
@@ -233,5 +240,10 @@ public class DulceriaVistaTerminal implements Vista{
     @Override
     public String getNombreDulceAeliminar() {
        return nombreDulceAeliminar;
+    }
+
+    @Override
+    public void setDatos(String resultado) {
+        System.out.println(resultado);
     }
 }

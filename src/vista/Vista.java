@@ -18,5 +18,6 @@ public interface Vista {
     public String getCategoria();
     public String getNombreDulceAmodificar();
     public String getNombreDulceAeliminar();
+    public void setDatos(String resultado);
     
 }
