@@ -29,6 +29,15 @@ Este programa ofrece una variedad de funciones que permiten gestionar de forma b
 
 ## _Descripcion del funcionamiento de los menús del programa_
 ### Insertar dulces
+En el panel menu insertar dulces implica que el usuario interactúa con diferentes elementos gráficos para ingresar información, en este caso se puede considerar las siguientes interacciones: 
+-un campo de texto (TextField) donde el usuario ingresa el nombre del dulce.
+-un grupo de botones de opción (RadioButton) que representa tres categorías: ácido, dulce y sin azúcar.
+-Un boton (Jbutton) para activar el evento.
+
+La vista de terminal, utilizamos la clase Scanner para leer los datos ingresados por el usuario, luego se muestra un menú de opciones y se le solicita al usuario que ingrese el número correspondiente a la categoría seleccionada, ambos datos ingresados guardados en variables auxiliares de tipo String y se usa un switch para asignar la categoría correspondiente según la opción seleccionada. 
+
+Se obtienen los datos en metodos get, los cuales por medio del controlador, se ejecuta el metodo del modelo de insertar ducle, el cual recibe dos parametros nombre de dulce y categoria del dulce. Luego agregar ese objeto a la lista de dulces existente. Esto permite almacenar información sobre los dulces ingresados en una estructura de datos para su posterior uso o consulta.
+
 ### Actualizar Dulces
 El menú de actualización de dulces se encarga de interactuar con la lista de dulces del modelo de datos para realizar cambios en los atributos de los dulces existentes. Para llevar a cabo esta funcionalidad, se utilizan varios elementos en la GUI:
 - Un combobox que muestra los nombres de los dulces existentes. El nombre del dulce seleccionado se almacena en una variable.
@@ -41,6 +50,11 @@ Una vez que se han obtenido los valores necesarios, se realiza un recorrido por 
 
 Al finalizar el proceso de modificación, se realizan algunas tareas adicionales, como borrar la selección de los radio buttons, restablecer el texto predeterminado en el campo de texto y actualizar las listas que muestran los nombres de los dulces, asegurando así una interfaz coherente y actualizada.
 ### Buscar dulces por nombre
+La interacción del panel buscar dulces es un panel de búsqueda consta de dos elementos principales:
+-Un campo de texto (textField) para ingresar los datos del dulce a buscar
+-Un área de texto (textArea) que mostrará los resultados.
+-Un boton (Jbutton) para activar el evento.
+En la terminal solo se obtiene en una variable el nombre del dulce a buscar, una vez obtenido el nombre del dulce a buscar en cualquiera de las vistas, se envia a un metodo del modelo, el cual recibe el parametro del nombre del dulce, se realiza la busqueda del dulce en la base de datos del arraylist. Una vez encuentra el dulce, se guarda en una variable los datos del dulce, el cual se envia por medio de un setter para mostrar la informacion en la terminal y en el Text Area de la Gui. 
 ### Eliminar Dulces
 ### Lista de dulces 
 
