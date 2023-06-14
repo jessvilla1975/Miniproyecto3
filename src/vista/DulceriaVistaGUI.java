@@ -452,7 +452,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
 
     private void lbEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbEliminarMouseClicked
         controlador.setAuxEliminarGui(true);
-        System.out.println("aux a true");
         cambiarPanelMenu(menuEliminar, Operaciones.ELIMINAR);
     }//GEN-LAST:event_lbEliminarMouseClicked
 
@@ -552,6 +551,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
         menuEliminar.btnEliminarDulce.addActionListener(controlador);
         menuEliminar.cbListaDulces.addActionListener(controlador);
 
+        // Mouse listener para el boton eliminar
         menuEliminar.btnEliminarDulce.addMouseListener(this);
 
         menuBuscar.btnBuscar.addActionListener(controlador);
@@ -660,10 +660,10 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
     @Override
     public void setDatos(String resultado, Boolean menuEliminar) {
         if (menuEliminar) {
-            System.out.println("Entro a setdatos para eliminar");
+            // se va a modificar la informacion de el eliminar
             this.menuEliminar.txtInformacion.setText(resultado);
         }else{
-            System.out.println("Entro a setdatos para buscar");
+            // se va a modificar la informacion en buscar
             menuBuscar.jTextArea1.setText(resultado);
         }
         

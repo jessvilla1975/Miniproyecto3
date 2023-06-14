@@ -63,9 +63,6 @@ public class ControladorDulceria implements ActionListener {
                     categoriadulce = CategoriaDulce.SINAZUCAR; 
                 }
                 modelo.insertarDulces(nuevoDulce, categoriadulce);
-                
-                // Listar dulces como metodo de comprobacion
-                modelo.listarDulces();
                 break;
             case ACTUALIZAR:
                 //Ejecuto el metodo de la vista y extraigo sus datos
@@ -87,9 +84,6 @@ public class ControladorDulceria implements ActionListener {
                 modelo.actualizarDulces(dulceAmodificar, nombreDulceNuevo, categoriadulce);
 
                 getNombresDulcesControlador();
-
-                // Listar dulces como metodo de comprobacion
-                modelo.listarDulces();
                 
                 // **Solo para GUI** Actualizo al tiempo los comboboxes y Jlist para que se vean los cambios en el mismo menu de la GUI
                 vista.actualizarNombresListComboboxes();
