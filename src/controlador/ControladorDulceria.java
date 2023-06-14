@@ -81,10 +81,17 @@ public class ControladorDulceria implements ActionListener {
                 break;
             case ELIMINAR:
                 vista.eliminarDulce();
-                String dulceAeliminar = vista.getNombreDulceAeliminar().toUpperCase();
-                modelo.eliminarDulces(dulceAeliminar);
-                // Listar dulces como metodo de comprobacion
-                modelo.listarDulces();
+                String nombreDulceAEliminar = vista.getNombreDulceAeliminar();
+                if (nombreDulceAEliminar == null) {
+                    System.out.println("No se ha seleccionado ningún dulce para eliminar.");
+                } else {
+                    String dulceAEliminar = nombreDulceAEliminar.toUpperCase();
+                    modelo.eliminarDulces(dulceAEliminar);
+                    // Listar dulces como método de comprobación
+                    modelo.listarDulces();
+                    
+                    }  
+                vista.actualizarNombresListComboboxes();
                 break;
             case LISTAR:
                 vista.listarDulce(modelo.getDulces());
