@@ -459,6 +459,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     private void lbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbBuscarMouseClicked
         cambiarPanelMenu(menuBuscar, Operaciones.BUSCAR);
+        menuBuscar.jTextArea1.setText(" "); // limpiar el text area cuando cambia el panel
     }//GEN-LAST:event_lbBuscarMouseClicked
 
     private void lbListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbListaMouseClicked
@@ -614,6 +615,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     @Override
     public void buscarDulce() {
         nombreDulce = menuBuscar.txtNombre.getText();
+        menuBuscar.txtNombre.setText("Nombre del dulce");
     }
 
     @Override
