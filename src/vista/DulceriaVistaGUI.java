@@ -32,7 +32,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     ControladorDulceria controlador;
     //Datos que se usaran en el controlador
 
-    String nombreDulce, categoria, nombreDulceAmodificar;
+    String nombreDulce, categoria, nombreDulceAmodificar, nombreDulceEliminar;
 
     //Lista para guardar los nombres de los dulces y enviarlos a los comboboxes y Jlist para mostrar la informacion
     String[] nombreDulces;
@@ -549,6 +549,9 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         actualizarDulcesComboBoxesList();
         menuInsertar.btnAgregarDulce.addActionListener(controlador);
         menuActualizar.btnModificarDulce.addActionListener(controlador);
+
+        menuEliminar.btnEliminarDulce.addActionListener(controlador);
+
         menuBuscar.btnBuscar.addActionListener(controlador);
 
         //TODO:agregar listeners a los demas componentes
@@ -608,8 +611,9 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     @Override
     public void eliminarDulce() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarDulce'");
+        nombreDulceEliminar = menuEliminar.cbListaDulces.getSelectedItem().toString();
+        menuEliminar.txtInformacion.setText("");
+        JOptionPane.showMessageDialog(null, "Eliminaste el dulce");
     }
 
     @Override
@@ -650,8 +654,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     @Override
     public String getNombreDulceAeliminar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNombreDulceAeliminar'");
+        return nombreDulceEliminar;
     }
 
     @Override
