@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import controlador.ControladorDulceria;
 import controlador.Operaciones;
@@ -23,17 +25,12 @@ import vista.componentesGUI.EliminarVista;
 import vista.componentesGUI.InsertarVista;
 import vista.componentesGUI.ListaVista;
 
-import modelo.Modelo;
-
-
-
-public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
+public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, MouseListener {
     //Agrego controlador
     ControladorDulceria controlador;
     //Datos que se usaran en el controlador
 
     String nombreDulce, categoria, nombreDulceAmodificar, nombreDulceEliminar;
-
     //Lista para guardar los nombres de los dulces y enviarlos a los comboboxes y Jlist para mostrar la informacion
     String[] nombreDulces;
 
@@ -51,13 +48,13 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
         menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
         menuLista.lsLista.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
+        menuEliminar.txtInformacion.setText("");
     }
 
     //------------------------------------------------
     public DulceriaVistaGUI() {
         initComponents();
-        setLocationRelativeTo(null);
-        
+        setLocationRelativeTo(null);  
     }
 
     @SuppressWarnings("unchecked")
@@ -454,6 +451,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     }//GEN-LAST:event_lbActualizarMouseClicked
 
     private void lbEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbEliminarMouseClicked
+        controlador.setAuxEliminarGui(true);
         cambiarPanelMenu(menuEliminar, Operaciones.ELIMINAR);
     }//GEN-LAST:event_lbEliminarMouseClicked
 
@@ -551,6 +549,10 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         menuActualizar.btnModificarDulce.addActionListener(controlador);
 
         menuEliminar.btnEliminarDulce.addActionListener(controlador);
+        menuEliminar.cbListaDulces.addActionListener(controlador);
+
+        // Mouse listener para el boton eliminar
+        menuEliminar.btnEliminarDulce.addMouseListener(this);
 
         menuBuscar.btnBuscar.addActionListener(controlador);
 
@@ -612,8 +614,6 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     @Override
     public void eliminarDulce() {
         nombreDulceEliminar = menuEliminar.cbListaDulces.getSelectedItem().toString();
-        menuEliminar.txtInformacion.setText("");
-        JOptionPane.showMessageDialog(null, "Eliminaste el dulce");
     }
 
     @Override
@@ -658,7 +658,41 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     }
 
     @Override
-    public void setDatos(String resultado) {
-        menuBuscar.jTextArea1.setText(resultado);
+    public void setDatos(String resultado, Boolean menuEliminar) {
+        if (menuEliminar) {
+            // se va a modificar la informacion de el eliminar
+            this.menuEliminar.txtInformacion.setText(resultado);
+        }else{
+            // se va a modificar la informacion en buscar
+            menuBuscar.jTextArea1.setText(resultado);
+        }
+        
+    }
+
+    // Eventos para detectar si el cursor entra o sale del boton para eliminar dulce, con el fin de detectar
+    // si se va a mostar la informacion o se va a eliminar. Estos setean la variable auxiliar en el controlador
+    // de esta manera el controlador sabe si se va a eliminar o solo se va a mostarar informacion
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        // entra, se eliminara el dulce seleccionado
+        controlador.setAuxEliminarGui(false);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        // sale, se mostrara la informacion del dulce seleccionado
+        controlador.setAuxEliminarGui(true);
     }
 }
