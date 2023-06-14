@@ -459,6 +459,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     private void lbBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbBuscarMouseClicked
         cambiarPanelMenu(menuBuscar, Operaciones.BUSCAR);
+        menuBuscar.jTextArea1.setText(" "); // limpiar el text area cuando cambia el panel
     }//GEN-LAST:event_lbBuscarMouseClicked
 
     private void lbListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbListaMouseClicked
@@ -540,7 +541,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     // End of variables declaration//GEN-END:variables
 
     // Metodos a implementar
-
+  
     @Override
     public void iniciar(ControladorDulceria controlador) {
         this.controlador = controlador;
@@ -548,6 +549,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
         actualizarDulcesComboBoxesList();
         menuInsertar.btnAgregarDulce.addActionListener(controlador);
         menuActualizar.btnModificarDulce.addActionListener(controlador);
+        menuBuscar.btnBuscar.addActionListener(controlador);
 
         //TODO:agregar listeners a los demas componentes
         
@@ -612,8 +614,8 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
 
     @Override
     public void buscarDulce() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarDulce'");
+        nombreDulce = menuBuscar.txtNombre.getText();
+        menuBuscar.txtNombre.setText("Nombre del dulce");
     }
 
     @Override
@@ -650,5 +652,10 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista {
     public String getNombreDulceAeliminar() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getNombreDulceAeliminar'");
+    }
+
+    @Override
+    public void setDatos(String resultado) {
+        menuBuscar.jTextArea1.setText(resultado);
     }
 }
