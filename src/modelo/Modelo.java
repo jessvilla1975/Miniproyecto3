@@ -85,7 +85,7 @@ public class Modelo {
         for (Dulce dulce : dulces){ 
             // Se convierte el nombre del dulce en mayusculas y se verifica si es igual al nombre del dulce a buscar en el arraylist
             if(dulce.getNombreDulce().toUpperCase().equals(nombreDulce)){
-                JOptionPane.showMessageDialog(null, "El dulce " + nombreDulce + " existe", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                // JOptionPane.showMessageDialog(null, "El dulce " + nombreDulce + " existe", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                 // Si se encuentra el dulce, se asignan los datos y se marca como encontrado
                 datos = "Nombre Dulce: " + dulce.getNombreDulce() + "\nCategoria: " + dulce.getCategoriaDulce().getElementoFormateado();
                 existeDulce = true;
@@ -94,7 +94,7 @@ public class Modelo {
         }
         if(!existeDulce){
             // Mostrar un cuadro de diálogo de error si no se encuentra el dulce
-            JOptionPane.showMessageDialog(null, "El dulce " + nombreDulce + " no existe", "Error", JOptionPane.ERROR_MESSAGE);
+            // JOptionPane.showMessageDialog(null, "El dulce " + nombreDulce + " no existe", "Error", JOptionPane.ERROR_MESSAGE);
         }
     
         return  datos;// Devolver los datos del dulce encontrado

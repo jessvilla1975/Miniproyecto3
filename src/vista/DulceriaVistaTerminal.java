@@ -243,7 +243,11 @@ public class DulceriaVistaTerminal implements Vista{
     }
 
     @Override
-    public void setDatos(String resultado) {
-        System.out.println(resultado);
+    public void setDatos(String resultado, Boolean menuEliminar) {
+        if (menuEliminar){
+            // No se ejecuta nada ya que no es para el menu eliminar
+        }else{
+            System.out.println(resultado);
+        }
     }
 }

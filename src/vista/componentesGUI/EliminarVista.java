@@ -10,7 +10,7 @@ package vista.componentesGUI;
  * @author Victor
  */
 public class EliminarVista extends javax.swing.JPanel {
-
+    
     /**
      * Creates new form EliminarVista
      */
@@ -76,9 +76,17 @@ public class EliminarVista extends javax.swing.JPanel {
 
         btnEliminarDulce.setFont(new java.awt.Font("Calisto MT", 0, 18)); // NOI18N
         btnEliminarDulce.setText("Eliminar Dulce");
+        btnEliminarDulce.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEliminarDulceMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEliminarDulceMouseExited(evt);
+            }
+        });
         btnEliminarDulce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarDulceActionPerformed(evt);
+                btnEliminarDulceActionPerformed(evt);
             }
         });
         bg.add(btnEliminarDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, -1, -1));
@@ -109,13 +117,21 @@ public class EliminarVista extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnModificarDulceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarDulceActionPerformed
+    private void btnEliminarDulceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDulceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnModificarDulceActionPerformed
+    }//GEN-LAST:event_btnEliminarDulceActionPerformed
 
     private void txtInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInformacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtInformacionActionPerformed
+
+    private void btnEliminarDulceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDulceMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarDulceMouseEntered
+
+    private void btnEliminarDulceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarDulceMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarDulceMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

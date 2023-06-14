@@ -15,6 +15,14 @@ public class ControladorDulceria implements ActionListener {
     CategoriaDulce categoriadulce;
     String dulceEncontrado;
 
+    // Me servira para ejecutar el evento perteneciente al combobox de la GUI
+    Boolean auxEliminarGui = false;
+
+
+    public ControladorDulceria(Modelo modelo, Vista vista) {
+        this.modelo = modelo;
+        this.vista = vista;
+    }
 
     public Operaciones getOperacion() {
         return operacion;
@@ -22,9 +30,13 @@ public class ControladorDulceria implements ActionListener {
     public void setOperacion(Operaciones operacion) {
         this.operacion = operacion;
     }
-    public ControladorDulceria(Modelo modelo, Vista vista) {
-        this.modelo = modelo;
-        this.vista = vista;
+
+    public Boolean getAuxEliminarGui() {
+        return auxEliminarGui;
+    }
+
+    public void setAuxEliminarGui(Boolean auxEliminarGui) {
+        this.auxEliminarGui = auxEliminarGui;
     }
 
     // Metodo intermediario que usa un metodo del modelo para enviar un array de nombres a la vista GUI
@@ -84,22 +96,24 @@ public class ControladorDulceria implements ActionListener {
                 break;
             case ELIMINAR:
                 vista.eliminarDulce();
-                String nombreDulceAEliminar = vista.getNombreDulceAeliminar();
-                if (nombreDulceAEliminar == null) {
-                    System.out.println("No se ha seleccionado ningún dulce para eliminar.");
-                } else {
-                    String dulceAEliminar = nombreDulceAEliminar.toUpperCase();
-                    modelo.eliminarDulces(dulceAEliminar);
-                    // Listar dulces como método de comprobación
-                    modelo.listarDulces();
-                    
-                    }  
-                vista.actualizarNombresListComboboxes();
+                String nombreDulceAEliminar = vista.getNombreDulceAeliminar().toUpperCase();
+                // voy a ejecuta el combobox y a poner la info en el - funciona principalemnte en la GUI
+                vista.setDatos(modelo.buscarDulcesPorNombre(nombreDulceAEliminar), true);
+                // si el auxiliar es false significa que se va a eliminar el dulce del ombobox, asi que ejecuto este metodo
+                if(!auxEliminarGui){
+                    if (nombreDulceAEliminar == null) {
+                        System.out.println("No se ha seleccionado ningún dulce para eliminar.");
+                    } else {
+                        String dulceAEliminar = nombreDulceAEliminar.toUpperCase();
+                        modelo.eliminarDulces(dulceAEliminar);
+                        }  
+                    vista.actualizarNombresListComboboxes();
+                }
                 break;
             case BUSCAR:
                 vista.buscarDulce();
                 String buscar = vista.getNombresDulces().toUpperCase();
-                vista.setDatos(modelo.buscarDulcesPorNombre(buscar));
+                vista.setDatos(modelo.buscarDulcesPorNombre(buscar), false);
                 break;
             case LISTAR:
                 vista.listarDulce(modelo.getDulces());
