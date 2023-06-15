@@ -42,5 +42,25 @@ Una vez que se han obtenido los valores necesarios, se realiza un recorrido por 
 Al finalizar el proceso de modificación, se realizan algunas tareas adicionales, como borrar la selección de los radio buttons, restablecer el texto predeterminado en el campo de texto y actualizar las listas que muestran los nombres de los dulces, asegurando así una interfaz coherente y actualizada.
 ### Buscar dulces por nombre
 ### Eliminar Dulces
+El menu de eliminacion de dulces se encarga de interactuar con la lista de dulces del modelo de datos para realizar cambios en los atributos de los dulces existentes.Para llevar a cabo esta funcionalidad, se utilizan varios elementos en la GUI:
+
+- Un combobox que muestra los nombres de los dulces existentes. El nombre del dulce seleccionado se almacena en una variable.
+- Un TextField de informacion en donde se muestra la informacion del dulce seleccionado en el combobox
+- Un Jbutoon encargado de dar el evento que confirma el dulce a eliminar
+
+Mientras que en la terminal se hace uso de prints y scanners para tomar los datos. En ambos casos estos datos se almacenan en unas variables auxiliares las cuales cuentan con getters que posteriormente son pedidos por el controlador para ser enviados al modelo.
+
+En la interfaz una vez que se han obtenido los valores necesarios, se realiza un recorrido por la lista de dulces del modelo. Durante este recorrido, se manda el nombre almacenado en una variable al metodo de eliminar dulce en el modelo, despus de de esto se actualizara el jcombox mostrando los dulces que quedaron.
+
+Al eliminar el dulce en la interfaz se realizan alguna tareas adicionales, como limpiar el campo de informacion una vez eliminiado el dulce.
 ### Lista de dulces 
+El menu de eliminacion de dulces se encarga de interactuar con la lista de dulces del modelo de datos para dar a conocer la categotia de estos en una caja de texto, se ultilizan varios elementos en la GUI:
+
+- Un Jlist que muestra los nombres de los dulces.
+- Un TextField en donde se mostra la categoria del dulce que se haya seleccionado ene le Jlist.
+
+Mientras que en la terminal se hace un de varios prints y del metodo de listar dulces que se encuentra en el modelo,
+este se encargara de imprimir cada detalle de los dulces.
+
+En la interfaz se asignara a una variable el elemento seleccionado en el Jlist, esta variable a asu vez se enviara mediante el controlador al modelo en donde se ejecutara un metodo que enviara la categoria exacta del dulce seleccionado hacia la interfaz, y esta se vera en el TextField categoria.
 
