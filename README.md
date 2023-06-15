@@ -56,5 +56,25 @@ La interacción del panel buscar dulces es un panel de búsqueda consta de dos e
 -Un boton (Jbutton) para activar el evento.
 En la terminal solo se obtiene en una variable el nombre del dulce a buscar, una vez obtenido el nombre del dulce a buscar en cualquiera de las vistas, se envia a un metodo del modelo, el cual recibe el parametro del nombre del dulce, se realiza la busqueda del dulce en la base de datos del arraylist. Una vez encuentra el dulce, se guarda en una variable los datos del dulce, el cual se envia por medio de un setter para mostrar la informacion en la terminal y en el Text Area de la Gui. 
 ### Eliminar Dulces
+El menu de eliminacion de dulces se encarga de interactuar con la lista de dulces del modelo de datos para realizar cambios en los atributos de los dulces existentes.Para llevar a cabo esta funcionalidad, se utilizan varios elementos en la GUI:
+
+- Un combobox que muestra los nombres de los dulces existentes. El nombre del dulce seleccionado se almacena en una variable.
+- Un TextField de informacion en donde se muestra la informacion del dulce seleccionado en el combobox
+- Un Jbutoon encargado de dar el evento que confirma el dulce a eliminar
+
+Mientras que en la terminal se hace uso de prints y scanners para tomar los datos. En ambos casos estos datos se almacenan en unas variables auxiliares las cuales cuentan con getters que posteriormente son pedidos por el controlador para ser enviados al modelo.
+
+En la interfaz una vez que se han obtenido los valores necesarios, se realiza un recorrido por la lista de dulces del modelo. Durante este recorrido, se manda el nombre almacenado en una variable al metodo de eliminar dulce en el modelo, despus de de esto se actualizara el jcombox mostrando los dulces que quedaron.
+
+Al eliminar el dulce en la interfaz se realizan alguna tareas adicionales, como limpiar el campo de informacion una vez eliminiado el dulce.
 ### Lista de dulces 
+El menu de eliminacion de dulces se encarga de interactuar con la lista de dulces del modelo de datos para dar a conocer la categotia de estos en una caja de texto, se ultilizan varios elementos en la GUI:
+
+- Un Jlist que muestra los nombres de los dulces.
+- Un TextField en donde se mostra la categoria del dulce que se haya seleccionado ene le Jlist.
+
+Mientras que en la terminal se hace un de varios prints y del metodo de listar dulces que se encuentra en el modelo,
+este se encargara de imprimir cada detalle de los dulces.
+
+En la interfaz se asignara a una variable el elemento seleccionado en el Jlist, esta variable a asu vez se enviara mediante el controlador al modelo en donde se ejecutara un metodo que enviara la categoria exacta del dulce seleccionado hacia la interfaz, y esta se vera en el TextField categoria.
 
