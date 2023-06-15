@@ -2,13 +2,14 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import modelo.Modelo;
 import vista.Vista;
 import modelo.CategoriaDulce;
 
-public class ControladorDulceria implements ActionListener {
+public class ControladorDulceria implements ActionListener, ListSelectionListener {
     Modelo modelo;
     Vista vista;
     Operaciones operacion;
@@ -83,7 +84,7 @@ public class ControladorDulceria implements ActionListener {
                 //Ejecuto el metodo para modificar el dulce con la informacion extraida de la vista
                 modelo.actualizarDulces(dulceAmodificar, nombreDulceNuevo, categoriadulce);
 
-                getNombresDulcesControlador();
+                getNombresDulcesControlador();  
                 
                 // **Solo para GUI** Actualizo al tiempo los comboboxes y Jlist para que se vean los cambios en el mismo menu de la GUI
                 vista.actualizarNombresListComboboxes();
@@ -118,5 +119,11 @@ public class ControladorDulceria implements ActionListener {
         
         
     }
-    
+
+    // Este valueChanged sirve para el JList de la Gui, asi que este Jlist será el unico que lo ejecutara
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        // Al ejecutarse el evento de selecion de la lista, se 
+        vista.listarDulce(modelo.getDulces());
+    }
 }

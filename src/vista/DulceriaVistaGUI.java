@@ -42,13 +42,14 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
     ListaVista menuLista = new ListaVista();
 
 
-    // Metodo para actualizar las list y comboboxes con los nombres de los dulces
+    // Metodo para actualizar las list y comboboxes con los nombres de los dulces y algunos campos de texto
     private void actualizarDulcesComboBoxesList(){
         nombreDulces = controlador.getNombresDulcesControlador();
         menuActualizar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
         menuEliminar.cbListaDulces.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
         menuLista.lsLista.setModel(new javax.swing.DefaultComboBoxModel<>(nombreDulces));
         menuEliminar.txtInformacion.setText("");
+        menuLista.txtCategoria.setText("");
     }
 
     //------------------------------------------------
@@ -556,13 +557,13 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
 
         menuBuscar.btnBuscar.addActionListener(controlador);
 
+        menuLista.lsLista.addListSelectionListener(controlador);
+
         //TODO:agregar listeners a los demas componentes
         
         setVisible(true);
     }
     
-
-
 
     @Override
     public void insertarDulce() {
@@ -608,7 +609,7 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
     // Mostrar un mensaje de éxito utilizando JOptionPane
     JOptionPane.showMessageDialog(null, "¡Se ha modificado dulce con éxito!", "Información", JOptionPane.INFORMATION_MESSAGE);
     
-}
+    }
 
 
     @Override
@@ -624,8 +625,16 @@ public class DulceriaVistaGUI extends javax.swing.JFrame implements Vista, Mouse
 
     @Override
     public void listarDulce(ArrayList<Dulce> dulces) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarDulce'");
+        // selecciono un dulce, verifico que la lista tenga un elemento seleccionado y recorro el array dulces que 
+        // recibe buscando el dulce y sacando su categoria para ser mostrada en el textfield
+        if(!menuLista.lsLista.isSelectionEmpty()){ // En caso de que la liste no este selccionada no hara nada
+                nombreDulce = menuLista.lsLista.getSelectedValue(); // si esta seleccionada agrega el valor a la variable
+        }
+        for (Dulce dulce : dulces) {
+            if (dulce.getNombreDulce().equals(nombreDulce)) {
+                menuLista.txtCategoria.setText(dulce.getCategoriaDulce().getElementoFormateado());
+            }
+        }
     }
 
     @Override
