@@ -10,6 +10,10 @@ import controlador.ControladorDulceria;
 
 public class App {
     public static void main(String[] args) {
+
+        /** IMPORTANTE, recordar que al ejecutar debe aparecer un OptionPane, si no aparece dar ALT+TAB hasta 
+        encontrarlo*/
+
         String[] opciones = { "Terminal", "GUI" };
         
         DulceriaVistaTerminal vista = new DulceriaVistaTerminal();
